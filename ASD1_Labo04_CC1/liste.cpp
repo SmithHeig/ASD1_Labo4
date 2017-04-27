@@ -79,9 +79,7 @@ public:
      *  @param other la LinkedList à copier
      */
     LinkedList( LinkedList& other ) /* ... */ {
-        head = other.head;
-        nbElements = other.nbElements;
-
+        (*this) = other;
     }
 
 public:
@@ -156,7 +154,8 @@ public:
     }
 
     const_reference front() const {
-        return (*head).data;
+        const unsigned front_data = (*head).data;
+        return front_data;
     }
 
 public:
@@ -184,7 +183,20 @@ public:
      *  @exception std::bad_alloc si pas assez de mémoire, où toute autre exception lancée par la constructeur de copie de value_type
      */
     void insert( const_reference value, size_t pos ) {
-         
+        if(pos == 0){
+            this->push_front(value);
+        } else {
+            if(pos == this->size()){
+                --pos;
+            }
+            Node* temp = head;
+            for(unsigned i = 0; i < pos -1; ++i){
+                temp = temp->next;
+            }
+            Node* n = new Node(value, temp->next);
+            temp->next = n;
+        }
+        ++nbElements;
     }
 
 public:
@@ -216,6 +228,7 @@ public:
      */
     const_reference at(size_t pos) const {
         Node* temp = head;
+        /* element avant l'élément à insérer */
         for(unsigned i = 0; i < pos; ++i){
             temp = temp->next;
         }
@@ -231,7 +244,20 @@ public:
      *  @exception std::out_of_range("LinkedList::erase") si pos non valide
      */
     void erase( size_t pos ) {
-        /* ... */
+        if(pos == 0){
+            Node* temp = head;
+            head = head->next;
+            delete temp;
+        } else {
+            Node* temp = head;
+            for(unsigned i = 0; i < pos - 1; ++i){
+                temp = temp->next;
+            }
+            Node* toDelete = temp->next;
+            temp->next = temp->next->next;
+            delete toDelete;
+        }
+        --nbElements;
     }
 
 public:
