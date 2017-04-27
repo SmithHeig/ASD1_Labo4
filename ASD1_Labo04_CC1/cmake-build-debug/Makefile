@@ -176,60 +176,6 @@ main.cpp.s:
 	$(MAKE) -f CMakeFiles\ASD1_Labo04_CC1.dir\build.make CMakeFiles/ASD1_Labo04_CC1.dir/main.cpp.s
 .PHONY : main.cpp.s
 
-nbproject/private/c_standard_headers_indexer.obj: nbproject/private/c_standard_headers_indexer.c.obj
-
-.PHONY : nbproject/private/c_standard_headers_indexer.obj
-
-# target to build an object file
-nbproject/private/c_standard_headers_indexer.c.obj:
-	$(MAKE) -f CMakeFiles\ASD1_Labo04_CC1.dir\build.make CMakeFiles/ASD1_Labo04_CC1.dir/nbproject/private/c_standard_headers_indexer.c.obj
-.PHONY : nbproject/private/c_standard_headers_indexer.c.obj
-
-nbproject/private/c_standard_headers_indexer.i: nbproject/private/c_standard_headers_indexer.c.i
-
-.PHONY : nbproject/private/c_standard_headers_indexer.i
-
-# target to preprocess a source file
-nbproject/private/c_standard_headers_indexer.c.i:
-	$(MAKE) -f CMakeFiles\ASD1_Labo04_CC1.dir\build.make CMakeFiles/ASD1_Labo04_CC1.dir/nbproject/private/c_standard_headers_indexer.c.i
-.PHONY : nbproject/private/c_standard_headers_indexer.c.i
-
-nbproject/private/c_standard_headers_indexer.s: nbproject/private/c_standard_headers_indexer.c.s
-
-.PHONY : nbproject/private/c_standard_headers_indexer.s
-
-# target to generate assembly for a file
-nbproject/private/c_standard_headers_indexer.c.s:
-	$(MAKE) -f CMakeFiles\ASD1_Labo04_CC1.dir\build.make CMakeFiles/ASD1_Labo04_CC1.dir/nbproject/private/c_standard_headers_indexer.c.s
-.PHONY : nbproject/private/c_standard_headers_indexer.c.s
-
-nbproject/private/cpp_standard_headers_indexer.obj: nbproject/private/cpp_standard_headers_indexer.cpp.obj
-
-.PHONY : nbproject/private/cpp_standard_headers_indexer.obj
-
-# target to build an object file
-nbproject/private/cpp_standard_headers_indexer.cpp.obj:
-	$(MAKE) -f CMakeFiles\ASD1_Labo04_CC1.dir\build.make CMakeFiles/ASD1_Labo04_CC1.dir/nbproject/private/cpp_standard_headers_indexer.cpp.obj
-.PHONY : nbproject/private/cpp_standard_headers_indexer.cpp.obj
-
-nbproject/private/cpp_standard_headers_indexer.i: nbproject/private/cpp_standard_headers_indexer.cpp.i
-
-.PHONY : nbproject/private/cpp_standard_headers_indexer.i
-
-# target to preprocess a source file
-nbproject/private/cpp_standard_headers_indexer.cpp.i:
-	$(MAKE) -f CMakeFiles\ASD1_Labo04_CC1.dir\build.make CMakeFiles/ASD1_Labo04_CC1.dir/nbproject/private/cpp_standard_headers_indexer.cpp.i
-.PHONY : nbproject/private/cpp_standard_headers_indexer.cpp.i
-
-nbproject/private/cpp_standard_headers_indexer.s: nbproject/private/cpp_standard_headers_indexer.cpp.s
-
-.PHONY : nbproject/private/cpp_standard_headers_indexer.s
-
-# target to generate assembly for a file
-nbproject/private/cpp_standard_headers_indexer.cpp.s:
-	$(MAKE) -f CMakeFiles\ASD1_Labo04_CC1.dir\build.make CMakeFiles/ASD1_Labo04_CC1.dir/nbproject/private/cpp_standard_headers_indexer.cpp.s
-.PHONY : nbproject/private/cpp_standard_headers_indexer.cpp.s
-
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -245,12 +191,6 @@ help:
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
-	@echo ... nbproject/private/c_standard_headers_indexer.obj
-	@echo ... nbproject/private/c_standard_headers_indexer.i
-	@echo ... nbproject/private/c_standard_headers_indexer.s
-	@echo ... nbproject/private/cpp_standard_headers_indexer.obj
-	@echo ... nbproject/private/cpp_standard_headers_indexer.i
-	@echo ... nbproject/private/cpp_standard_headers_indexer.s
 .PHONY : help
 
 

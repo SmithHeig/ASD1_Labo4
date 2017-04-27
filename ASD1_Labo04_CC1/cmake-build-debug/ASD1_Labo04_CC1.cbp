@@ -88,12 +88,6 @@
 		<Unit filename="C:/Users/James/Documents/HEIG-VD/Cours/ASD1/Labos/ASD1_Labo4/ASD1_Labo04_CC1/main.cpp">
 			<Option target="ASD1_Labo04_CC1"/>
 		</Unit>
-		<Unit filename="C:/Users/James/Documents/HEIG-VD/Cours/ASD1/Labos/ASD1_Labo4/ASD1_Labo04_CC1/nbproject/private/c_standard_headers_indexer.c">
-			<Option target="ASD1_Labo04_CC1"/>
-		</Unit>
-		<Unit filename="C:/Users/James/Documents/HEIG-VD/Cours/ASD1/Labos/ASD1_Labo4/ASD1_Labo04_CC1/nbproject/private/cpp_standard_headers_indexer.cpp">
-			<Option target="ASD1_Labo04_CC1"/>
-		</Unit>
 		<Unit filename="C:/Users/James/Documents/HEIG-VD/Cours/ASD1/Labos/ASD1_Labo4/ASD1_Labo04_CC1/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>

@@ -102,6 +102,7 @@ public:
         head = other.head;
         nbElements = other.nbElements;
         return *this;
+        /** Doit on supprimé les éléments du tableau qui se fait ecrasé ?*/
     }
 
 public:
@@ -109,7 +110,13 @@ public:
      *  @brief destructeur
      */
     ~LinkedList() {
-        /* ... */
+        for(unsigned i = 0; i < nbElements - 1; ++i){
+            Node* temp = head;
+            head = head->next;
+            delete temp;
+        }
+        delete head; // supprimer le dernier élément
+        nbElements = 0; //Useless ?
     }
 
 public:
@@ -145,11 +152,11 @@ public:
      */
     reference front() {
         /* Doit géré les execptions encore */
-       // return (*head);
+        return (*head).data;
     }
 
     const_reference front() const {
-        return(*head);
+        return (*head).data;
     }
 
 public:
@@ -177,12 +184,7 @@ public:
      *  @exception std::bad_alloc si pas assez de mémoire, où toute autre exception lancée par la constructeur de copie de value_type
      */
     void insert( const_reference value, size_t pos ) {
-        /** Node* currentPos = head;
-        for(size_t i = 0; i < pos; ++i){
-            currentPos = currentPos->next;
-        }
-        Node* n = new Node(value,currentPos); */
-        /** A finir et refaire*/
+         
     }
 
 public:
@@ -196,7 +198,11 @@ public:
      *  @return une reference a l'element correspondant dans la liste
      */
     reference at(size_t pos) {
-        /* ... */
+        Node* temp = head;
+        for(size_t i = 0; i < pos; ++i){
+            temp = temp->next;
+        }
+        return (*temp).data;
     }
 
     /**
@@ -209,7 +215,11 @@ public:
      *  @return une const_reference a l'element correspondant dans la liste
      */
     const_reference at(size_t pos) const {
-        /* ... */
+        Node* temp = head;
+        for(unsigned i = 0; i < pos; ++i){
+            temp = temp->next;
+        }
+        return (*temp).data;
     }
 
 public:
