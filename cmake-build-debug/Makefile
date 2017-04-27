@@ -122,6 +122,33 @@ ASD1_Labo4/fast:
 	$(MAKE) -f CMakeFiles\ASD1_Labo4.dir\build.make CMakeFiles/ASD1_Labo4.dir/build
 .PHONY : ASD1_Labo4/fast
 
+list.obj: list.cpp.obj
+
+.PHONY : list.obj
+
+# target to build an object file
+list.cpp.obj:
+	$(MAKE) -f CMakeFiles\ASD1_Labo4.dir\build.make CMakeFiles/ASD1_Labo4.dir/list.cpp.obj
+.PHONY : list.cpp.obj
+
+list.i: list.cpp.i
+
+.PHONY : list.i
+
+# target to preprocess a source file
+list.cpp.i:
+	$(MAKE) -f CMakeFiles\ASD1_Labo4.dir\build.make CMakeFiles/ASD1_Labo4.dir/list.cpp.i
+.PHONY : list.cpp.i
+
+list.s: list.cpp.s
+
+.PHONY : list.s
+
+# target to generate assembly for a file
+list.cpp.s:
+	$(MAKE) -f CMakeFiles\ASD1_Labo4.dir\build.make CMakeFiles/ASD1_Labo4.dir/list.cpp.s
+.PHONY : list.cpp.s
+
 main.obj: main.cpp.obj
 
 .PHONY : main.obj
@@ -158,6 +185,9 @@ help:
 	@echo ... ASD1_Labo4
 	@echo ... edit_cache
 	@echo ... rebuild_cache
+	@echo ... list.obj
+	@echo ... list.i
+	@echo ... list.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
