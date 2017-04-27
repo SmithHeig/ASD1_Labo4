@@ -1,6 +1,7 @@
 // PROGRAMME DE TEST CC1
 
 #include "liste.cpp"
+#include <random>
 
 int main() {
 

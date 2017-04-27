@@ -66,7 +66,10 @@ public:
      *
      */
     LinkedList() /* ... */
-    { /* ... */ }
+    {
+        head = nullptr;
+        nbElements = 0;
+    }
 
 public:
     /**
@@ -75,7 +78,9 @@ public:
      *  @param other la LinkedList à copier
      */
     LinkedList( LinkedList& other ) /* ... */ {
-        /* ... */
+        head = other.head;
+        nbElements = other.nbElements;
+
     }
 
 public:
@@ -92,8 +97,9 @@ public:
      *  @remark le contenu précédent de la LinkedList courante est
      *  effacé.
      */
-    LinkedList& operator= ( const LinkedList& other ) {
-        /* ... */
+    LinkedList& operator = ( const LinkedList& other ) {
+        head = other.head;
+        nbElements = other.nbElements;
         return *this;
     }
 
@@ -112,7 +118,7 @@ public:
      *  @return nombre d'éléments.
      */
     size_t size() const noexcept {
-        /* ... */
+        return nbElements;
     }
 
 public:
@@ -124,7 +130,8 @@ public:
      *  @exception std::bad_alloc si pas assez de mémoire, où toute autre exception lancée par la constructeur de copie de value_type
      */
     void push_front( const_reference value) {
-        /* ... */
+        Node* n = new Node(value,head);
+        head = n;
     }
 
 public:

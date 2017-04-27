@@ -80,40 +80,40 @@ CMakeFiles/ASD1_Labo4.dir/main.cpp.obj.provides: CMakeFiles/ASD1_Labo4.dir/main.
 CMakeFiles/ASD1_Labo4.dir/main.cpp.obj.provides.build: CMakeFiles/ASD1_Labo4.dir/main.cpp.obj
 
 
-CMakeFiles/ASD1_Labo4.dir/list.cpp.obj: CMakeFiles/ASD1_Labo4.dir/flags.make
-CMakeFiles/ASD1_Labo4.dir/list.cpp.obj: ../list.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\James\Documents\HEIG-VD\Cours\ASD1\Labos\ASD1_Labo4\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/ASD1_Labo4.dir/list.cpp.obj"
-	C:\MinGW\bin\g++.exe   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\ASD1_Labo4.dir\list.cpp.obj -c C:\Users\James\Documents\HEIG-VD\Cours\ASD1\Labos\ASD1_Labo4\list.cpp
+CMakeFiles/ASD1_Labo4.dir/liste.cpp.obj: CMakeFiles/ASD1_Labo4.dir/flags.make
+CMakeFiles/ASD1_Labo4.dir/liste.cpp.obj: ../liste.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\James\Documents\HEIG-VD\Cours\ASD1\Labos\ASD1_Labo4\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/ASD1_Labo4.dir/liste.cpp.obj"
+	C:\MinGW\bin\g++.exe   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\ASD1_Labo4.dir\liste.cpp.obj -c C:\Users\James\Documents\HEIG-VD\Cours\ASD1\Labos\ASD1_Labo4\liste.cpp
 
-CMakeFiles/ASD1_Labo4.dir/list.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ASD1_Labo4.dir/list.cpp.i"
-	C:\MinGW\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\James\Documents\HEIG-VD\Cours\ASD1\Labos\ASD1_Labo4\list.cpp > CMakeFiles\ASD1_Labo4.dir\list.cpp.i
+CMakeFiles/ASD1_Labo4.dir/liste.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ASD1_Labo4.dir/liste.cpp.i"
+	C:\MinGW\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\James\Documents\HEIG-VD\Cours\ASD1\Labos\ASD1_Labo4\liste.cpp > CMakeFiles\ASD1_Labo4.dir\liste.cpp.i
 
-CMakeFiles/ASD1_Labo4.dir/list.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ASD1_Labo4.dir/list.cpp.s"
-	C:\MinGW\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\James\Documents\HEIG-VD\Cours\ASD1\Labos\ASD1_Labo4\list.cpp -o CMakeFiles\ASD1_Labo4.dir\list.cpp.s
+CMakeFiles/ASD1_Labo4.dir/liste.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ASD1_Labo4.dir/liste.cpp.s"
+	C:\MinGW\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\James\Documents\HEIG-VD\Cours\ASD1\Labos\ASD1_Labo4\liste.cpp -o CMakeFiles\ASD1_Labo4.dir\liste.cpp.s
 
-CMakeFiles/ASD1_Labo4.dir/list.cpp.obj.requires:
+CMakeFiles/ASD1_Labo4.dir/liste.cpp.obj.requires:
 
-.PHONY : CMakeFiles/ASD1_Labo4.dir/list.cpp.obj.requires
+.PHONY : CMakeFiles/ASD1_Labo4.dir/liste.cpp.obj.requires
 
-CMakeFiles/ASD1_Labo4.dir/list.cpp.obj.provides: CMakeFiles/ASD1_Labo4.dir/list.cpp.obj.requires
-	$(MAKE) -f CMakeFiles\ASD1_Labo4.dir\build.make CMakeFiles/ASD1_Labo4.dir/list.cpp.obj.provides.build
-.PHONY : CMakeFiles/ASD1_Labo4.dir/list.cpp.obj.provides
+CMakeFiles/ASD1_Labo4.dir/liste.cpp.obj.provides: CMakeFiles/ASD1_Labo4.dir/liste.cpp.obj.requires
+	$(MAKE) -f CMakeFiles\ASD1_Labo4.dir\build.make CMakeFiles/ASD1_Labo4.dir/liste.cpp.obj.provides.build
+.PHONY : CMakeFiles/ASD1_Labo4.dir/liste.cpp.obj.provides
 
-CMakeFiles/ASD1_Labo4.dir/list.cpp.obj.provides.build: CMakeFiles/ASD1_Labo4.dir/list.cpp.obj
+CMakeFiles/ASD1_Labo4.dir/liste.cpp.obj.provides.build: CMakeFiles/ASD1_Labo4.dir/liste.cpp.obj
 
 
 # Object files for target ASD1_Labo4
 ASD1_Labo4_OBJECTS = \
 "CMakeFiles/ASD1_Labo4.dir/main.cpp.obj" \
-"CMakeFiles/ASD1_Labo4.dir/list.cpp.obj"
+"CMakeFiles/ASD1_Labo4.dir/liste.cpp.obj"
 
 # External object files for target ASD1_Labo4
 ASD1_Labo4_EXTERNAL_OBJECTS =
 
 ASD1_Labo4.exe: CMakeFiles/ASD1_Labo4.dir/main.cpp.obj
-ASD1_Labo4.exe: CMakeFiles/ASD1_Labo4.dir/list.cpp.obj
+ASD1_Labo4.exe: CMakeFiles/ASD1_Labo4.dir/liste.cpp.obj
 ASD1_Labo4.exe: CMakeFiles/ASD1_Labo4.dir/build.make
 ASD1_Labo4.exe: CMakeFiles/ASD1_Labo4.dir/linklibs.rsp
 ASD1_Labo4.exe: CMakeFiles/ASD1_Labo4.dir/objects1.rsp
@@ -127,7 +127,7 @@ CMakeFiles/ASD1_Labo4.dir/build: ASD1_Labo4.exe
 .PHONY : CMakeFiles/ASD1_Labo4.dir/build
 
 CMakeFiles/ASD1_Labo4.dir/requires: CMakeFiles/ASD1_Labo4.dir/main.cpp.obj.requires
-CMakeFiles/ASD1_Labo4.dir/requires: CMakeFiles/ASD1_Labo4.dir/list.cpp.obj.requires
+CMakeFiles/ASD1_Labo4.dir/requires: CMakeFiles/ASD1_Labo4.dir/liste.cpp.obj.requires
 
 .PHONY : CMakeFiles/ASD1_Labo4.dir/requires
 
