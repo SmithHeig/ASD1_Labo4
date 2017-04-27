@@ -1,3 +1,4 @@
+//coucou
 //
 //  LinkedList.cpp
 //
@@ -143,11 +144,12 @@ public:
      *  @exception std::runtime_error si la liste est vide
      */
     reference front() {
-        /* ... */
+        /* Doit géré les execptions encore */
+        return (*head);
     }
 
     const_reference front() const {
-        /* ... */
+        return(*head);
     }
 
 public:
@@ -157,7 +159,9 @@ public:
      *  @exception std::runtime_error si la liste est vide
      */
     void pop_front( ) {
-        /* ... */
+        Node* temp = head;
+        head = head->next;
+        delete temp;
     }
 
 public:
@@ -172,7 +176,7 @@ public:
      *  @exception std::bad_alloc si pas assez de mémoire, où toute autre exception lancée par la constructeur de copie de value_type
      */
     void insert( const_reference value, size_t pos ) {
-        /* ... */
+        for(size_t )
     }
 
 public:

@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/James/Documents/HEIG-VD/Cours/ASD1/Labos/ASD1_Labo4/ASD_Lab4_CC1/liste.cpp
+iostream
+-
+stdexcept
+-
+
+C:/Users/James/Documents/HEIG-VD/Cours/ASD1/Labos/ASD1_Labo4/ASD_Lab4_CC1/main.cpp
+liste.cpp
+C:/Users/James/Documents/HEIG-VD/Cours/ASD1/Labos/ASD1_Labo4/ASD_Lab4_CC1/liste.cpp
+random
+-
+
