@@ -133,6 +133,7 @@ public:
     void push_front( const_reference value) {
         Node* n = new Node(value,head);
         head = n;
+        nbElements++;
     }
 
 public:
@@ -162,6 +163,8 @@ public:
         Node* temp = head;
         head = head->next;
         delete temp;
+        nbElements--;
+        nbElements--;
     }
 
 public:
@@ -176,7 +179,12 @@ public:
      *  @exception std::bad_alloc si pas assez de mémoire, où toute autre exception lancée par la constructeur de copie de value_type
      */
     void insert( const_reference value, size_t pos ) {
-        for(size_t )
+        /** Node* currentPos = head;
+        for(size_t i = 0; i < pos; ++i){
+            currentPos = currentPos->next;
+        }
+        Node* n = new Node(value,currentPos); */
+        /** A finir et refaire*/
     }
 
 public:
