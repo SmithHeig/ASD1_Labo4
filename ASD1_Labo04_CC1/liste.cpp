@@ -97,7 +97,7 @@ public:
     LinkedList& operator = ( const LinkedList& other ) {
        // head = other.head;
         //nbElements = other.nbElements;
-        return *this;
+        //return *this;
         /** Doit on supprimé les éléments du tableau qui se fait ecrasé ?*/
     }
 
@@ -300,16 +300,32 @@ public:
         n'est pas trouvée
      */
     size_t find( const_reference value ) const noexcept {
-        /* ... */
+        Node* temp = head;
+        for(unsigned i = 0; i < nbElements; ++i){
+            if(temp->data == value){
+                return i;
+            }
+            temp = temp->next;
+        }
+        return -1;
     }
 
     /**
      *  @brief Tri des elements de la liste par tri fusion
      */
     void sort() {
-        /* ... */
+        Node* temp = head;
+        for(unsigned i = 0; i < nbElements; ++i){
+            for(unsigned j = 0; j < nbElements - i; ++j){
+                if(temp->data > temp->next->data){
+                    //swap
+                    Node* temp2 = temp;
+                    temp->data = temp->next->data;
+                    temp2->next->data = temp2->data;
+                }
+            }
+        }
     }
-
 };
 
 template <typename T>

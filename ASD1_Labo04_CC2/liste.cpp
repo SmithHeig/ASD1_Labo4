@@ -1,4 +1,3 @@
-//coucou
 //
 //  LinkedList.cpp
 //
@@ -117,13 +116,14 @@ public:
      *  @brief destructeur
      */
     ~LinkedList() {
-        for(unsigned i = 0; i < nbElements - 1; ++i){
+        for(unsigned i = 0; i < nbElements;++i){// - 1; ++i){
             Node* temp = head;
             head = head->next;
             delete temp;
         }
-        delete head; // supprimer le dernier élément
-        nbElements = 0; //Useless ?
+        //delete head; // supprimer le dernier élément
+        //Est ce qu'on le ferait pas deux fois ? 
+        //nbElements = 0; //Useless ?
     }
 
 public:
@@ -145,8 +145,12 @@ public:
      *  @exception std::bad_alloc si pas assez de mémoire, où toute autre exception lancée par la constructeur de copie de value_type
      */
     void push_front( const_reference value) {
-        head = new Node(value,head);
-        ++nbElements;
+       try{
+         head = new Node(value,head);
+         ++nbElements;
+       } catch(...){
+          
+       }
     }
 
 public:
@@ -158,18 +162,14 @@ public:
      *  @exception std::runtime_error si la liste est vide
      */
     reference front() {
-        if(size() == 0){
-            throw(runtime_error("List vide!"));
-        }
-        return (*head).data;
+        /* Doit géré les execptions encore */
+        return head->data;//MODIF GIGI (*head).data;
     }
 
     const_reference front() const {
-        if(size() == 0){
-            throw(runtime_error("List vide!"));
-        }
-        const unsigned front_data = (*head).data;
-        return front_data;
+        //const unsigned front_data = (*head).data;
+         T front_data = head->data;
+         return front_data;
     }
 
 public:
@@ -179,13 +179,11 @@ public:
      *  @exception std::runtime_error si la liste est vide
      */
     void pop_front( ) {
-        if(size() == 0){
-            throw(runtime_error("List vide!"));
-        }
         Node* temp = head;
         head = head->next;
         delete temp;
         nbElements--;
+        //?????????????????????
     }
 
 public:
@@ -199,11 +197,27 @@ public:
      *
      *  @exception std::bad_alloc si pas assez de mémoire, où toute autre exception lancée par la constructeur de copie de value_type
      */
-    void insert( const_reference value, size_t pos ) {
-        if(pos >     size()){
-            throw(out_of_range("position invalide!"));
-        }
-        /**std::bad_alloc si pas assez de mémoire, où toute autre exception lancée par la constructeur de copie de value_type*/
+       void insert( const_reference value, size_t pos ) {
+        
+         if(pos == 0){
+            return push_front(value);
+         } 
+        
+         Node* current = head;
+         for(size_t i = 0; i < pos-1; ++i){
+             current = current->next;
+         }
+         Node* temp = current;
+
+         if(pos == nbElements){
+            temp->next = new Node(value, NULL);
+         }
+         else{
+            temp->next = new Node(value, temp->next);
+         }
+        ++nbElements;
+    }   
+   /* void insert( const_reference value, size_t pos ) {
         if(pos == 0){
             this->push_front(value);
         } else {
@@ -218,7 +232,7 @@ public:
             temp->next = n;
         }
         ++nbElements;
-    }
+    }*/ 
 
 public:
     /**
@@ -231,14 +245,11 @@ public:
      *  @return une reference a l'element correspondant dans la liste
      */
     reference at(size_t pos) {
-        if(pos >= size()){
-            throw(out_of_range("position invalide!"));
-        }
         Node* temp = head;
         for(size_t i = 0; i < pos; ++i){
             temp = temp->next;
         }
-        return (*temp).data;
+        return temp->data;//modif
     }
 
     /**
@@ -324,7 +335,6 @@ public:
             }
         }
     }
-
 };
 
 template <typename T>
