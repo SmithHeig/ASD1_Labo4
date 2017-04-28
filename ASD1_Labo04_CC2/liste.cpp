@@ -1,3 +1,5 @@
+//coucou
+//
 //  LinkedList.cpp
 //
 //  Copyright (c) 2016 Olivier Cuisenaire. All rights reserved.
@@ -66,7 +68,7 @@ public:
      */
     LinkedList() /* ... */
     {
-        head = nullptr;//NULL ?
+        head = nullptr;
         nbElements = 0;
     }
 
@@ -76,9 +78,9 @@ public:
      *
      *  @param other la LinkedList à copier
      */
-    //LinkedList( LinkedList& other ) /* ... */ {
-      //  (*this) = other;
-    //}
+    LinkedList( LinkedList& other ) /* ... */ {
+        (*this) = other;
+    }
 
 public:
     /**
@@ -95,10 +97,19 @@ public:
      *  effacé.
      */
     LinkedList& operator = ( const LinkedList& other ) {
-       // head = other.head;
-        //nbElements = other.nbElements;
+        /** à controler && l'opérateur doit être une no-op si other
+        *   est la LinkedList courante.*/
+        if(head != other.head){
+            for(unsigned i = 0; i < nbElements - 1; ++i){
+                Node* temp = head;
+                head = head->next;
+                delete temp;
+            }
+            head = other.head;
+            nbElements = other.nbElements;
+        }
         return *this;
-        /** Doit on supprimé les éléments du tableau qui se fait ecrasé ?*/
+
     }
 
 public:
@@ -106,14 +117,13 @@ public:
      *  @brief destructeur
      */
     ~LinkedList() {
-        for(unsigned i = 0; i < nbElements;++i){// - 1; ++i){
+        for(unsigned i = 0; i < nbElements - 1; ++i){
             Node* temp = head;
             head = head->next;
             delete temp;
         }
-        //delete head; // supprimer le dernier élément
-        //Est ce qu'on le ferait pas deux fois ? 
-        //nbElements = 0; //Useless ?
+        delete head; // supprimer le dernier élément
+        nbElements = 0; //Useless ?
     }
 
 public:
@@ -135,12 +145,8 @@ public:
      *  @exception std::bad_alloc si pas assez de mémoire, où toute autre exception lancée par la constructeur de copie de value_type
      */
     void push_front( const_reference value) {
-       try{
-         head = new Node(value,head);
-         ++nbElements;
-       } catch(...){
-          
-       }
+        head = new Node(value,head);
+        ++nbElements;
     }
 
 public:
@@ -152,14 +158,18 @@ public:
      *  @exception std::runtime_error si la liste est vide
      */
     reference front() {
-        /* Doit géré les execptions encore */
-        return head->data;//MODIF GIGI (*head).data;
+        if(size() == 0){
+            throw(runtime_error("List vide!"));
+        }
+        return (*head).data;
     }
 
     const_reference front() const {
-        //const unsigned front_data = (*head).data;
-         T front_data = head->data;
-         return front_data;
+        if(size() == 0){
+            throw(runtime_error("List vide!"));
+        }
+        const unsigned front_data = (*head).data;
+        return front_data;
     }
 
 public:
@@ -169,11 +179,13 @@ public:
      *  @exception std::runtime_error si la liste est vide
      */
     void pop_front( ) {
+        if(size() == 0){
+            throw(runtime_error("List vide!"));
+        }
         Node* temp = head;
         head = head->next;
         delete temp;
         nbElements--;
-        //?????????????????????
     }
 
 public:
@@ -187,27 +199,11 @@ public:
      *
      *  @exception std::bad_alloc si pas assez de mémoire, où toute autre exception lancée par la constructeur de copie de value_type
      */
-       void insert( const_reference value, size_t pos ) {
-        
-         if(pos == 0){
-            return push_front(value);
-         } 
-        
-         Node* current = head;
-         for(size_t i = 0; i < pos-1; ++i){
-             current = current->next;
-         }
-         Node* temp = current;
-
-         if(pos == nbElements){
-            temp->next = new Node(value, NULL);
-         }
-         else{
-            temp->next = new Node(value, temp->next);
-         }
-        ++nbElements;
-    }   
-   /* void insert( const_reference value, size_t pos ) {
+    void insert( const_reference value, size_t pos ) {
+        if(pos >     size()){
+            throw(out_of_range("position invalide!"));
+        }
+        /**std::bad_alloc si pas assez de mémoire, où toute autre exception lancée par la constructeur de copie de value_type*/
         if(pos == 0){
             this->push_front(value);
         } else {
@@ -222,12 +218,8 @@ public:
             temp->next = n;
         }
         ++nbElements;
-    }*/        
-   
-   
+    }
 
-
-   
 public:
     /**
      *  @brief Acces à l'element en position quelconque
@@ -239,11 +231,14 @@ public:
      *  @return une reference a l'element correspondant dans la liste
      */
     reference at(size_t pos) {
+        if(pos >= size()){
+            throw(out_of_range("position invalide!"));
+        }
         Node* temp = head;
         for(size_t i = 0; i < pos; ++i){
             temp = temp->next;
         }
-        return temp->data;//modif
+        return (*temp).data;
     }
 
     /**
@@ -256,12 +251,15 @@ public:
      *  @return une const_reference a l'element correspondant dans la liste
      */
     const_reference at(size_t pos) const {
+        if(pos >= size()){
+            throw(out_of_range("position invalide!"));
+        }
         Node* temp = head;
         /* element avant l'élément à insérer */
         for(unsigned i = 0; i < pos; ++i){
             temp = temp->next;
         }
-        return temp->data;//modif
+        return (*temp).data;
     }
 
 public:
@@ -300,14 +298,31 @@ public:
         n'est pas trouvée
      */
     size_t find( const_reference value ) const noexcept {
-        /* ... */
+        Node* temp = head;
+        for(unsigned i = 0; i < nbElements; ++i){
+            if(temp->data == value){
+                return i;
+            }
+            temp = temp->next;
+        }
+        return -1;
     }
 
     /**
      *  @brief Tri des elements de la liste par tri fusion
      */
     void sort() {
-        /* ... */
+        Node* temp = head;
+        for(unsigned i = 0; i < nbElements; ++i){
+            for(unsigned j = 0; j < nbElements - i; ++j){
+                if(temp->data > temp->next->data){
+                    //swap
+                    Node* temp2 = temp;
+                    temp->data = temp->next->data;
+                    temp2->next->data = temp2->data;
+                }
+            }
+        }
     }
 
 };
