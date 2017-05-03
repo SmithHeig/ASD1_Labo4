@@ -1,6 +1,8 @@
 //
 //  LinkedList.cpp
 //
+// Labo James Smith Guillaume Schranz et Joel Schär
+//
 //  Copyright (c) 2016 Olivier Cuisenaire. All rights reserved.
 //
 
@@ -77,7 +79,7 @@ public:
      *
      *  @param other la LinkedList à copier
      */
-    LinkedList( LinkedList& other ) /* ... */ {
+    LinkedList( const LinkedList& other ); /* ... */ {
         (*this) = other;
     }
 
@@ -108,7 +110,6 @@ public:
             nbElements = other.nbElements;
         }
         return *this;
-
     }
 
 public:
@@ -116,14 +117,11 @@ public:
      *  @brief destructeur
      */
     ~LinkedList() {
-        for(unsigned i = 0; i < nbElements;++i){// - 1; ++i){
+        for(unsigned i = 0; i < nbElements;++i){
             Node* temp = head;
             head = head->next;
             delete temp;
         }
-        //delete head; // supprimer le dernier élément
-        //Est ce qu'on le ferait pas deux fois ? 
-        //nbElements = 0; //Useless ?
     }
 
 public:
@@ -163,11 +161,10 @@ public:
      */
     reference front() {
         /* Doit géré les execptions encore */
-        return head->data;//MODIF GIGI (*head).data;
+        return head->data;
     }
 
     const_reference front() const {
-        //const unsigned front_data = (*head).data;
          T front_data = head->data;
          return front_data;
     }
@@ -183,7 +180,6 @@ public:
         head = head->next;
         delete temp;
         nbElements--;
-        //?????????????????????
     }
 
 public:
@@ -216,23 +212,7 @@ public:
             temp->next = new Node(value, temp->next);
          }
         ++nbElements;
-    }   
-   /* void insert( const_reference value, size_t pos ) {
-        if(pos == 0){
-            this->push_front(value);
-        } else {
-            if(pos == this->size()){
-                --pos;
-            }
-            Node* temp = head;
-            for(unsigned i = 0; i < pos -1; ++i){
-                temp = temp->next;
-            }
-            Node* n = new Node(value, temp->next);
-            temp->next = n;
-        }
-        ++nbElements;
-    }*/ 
+    }
 
 public:
     /**
@@ -249,7 +229,7 @@ public:
         for(size_t i = 0; i < pos; ++i){
             temp = temp->next;
         }
-        return temp->data;//modif
+        return temp->data;
     }
 
     /**
