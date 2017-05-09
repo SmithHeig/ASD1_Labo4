@@ -114,15 +114,21 @@ public:
     LinkedList& operator = ( const LinkedList& other ) {
         /** à controler && l'opérateur doit être une no-op si other
         *   est la LinkedList courante.*/
-        if(head != other.head){
-            for(unsigned i = 0; i < nbElements - 1; ++i){
-                Node* temp = head;
-                head = head->next;
-                delete temp;
-            }
-            head = other.head;
-            nbElements = other.nbElements;
-        }
+//        if(head != other.head){
+//            for(unsigned i = 0; i < nbElements - 1; ++i){
+//                Node* temp = head;
+//                head = head->next;
+//                delete temp;
+//            }
+//            head = other.head;
+//            nbElements = other.nbElements;
+//        }
+//        return *this;
+//    }
+        LinkedList tmp = other;
+        swap(head, tmp.head);
+        swap(nbElements, tmp.nbElements);
+        
         return *this;
     }
 
@@ -208,19 +214,29 @@ public:
      *  @exception std::bad_alloc si pas assez de mémoire, où toute autre exception lancée par la constructeur de copie de value_type
      */
        void insert( const_reference value, size_t pos ) {
-        
-         if(pos == 0){
-            return push_front(value);
-         } 
-        
-         Node* current = head;
-         for(size_t i = 0; i < pos-1; ++i){
-             current = current->next;
-         }
-         Node* temp = current;
+          try{
+            if(pos == 0){
+               return push_front(value);
+            } 
 
-        temp->next = new Node(value, temp->next);
-        ++nbElements;
+            Node* current = head;
+            if (pos > nbElements) {
+                    throw std::out_of_range("acompleter");
+            }
+            for(size_t i = 0; i < pos-1; ++i){
+                current = current->next;
+            }
+            Node* temp = current;
+
+           temp->next = new Node(value, temp->next);
+           ++nbElements;
+        
+        }
+        catch(const std::out_of_range& e){
+            throw e;
+        }catch(const  std::exception& e){
+            throw e;
+        }
     }
 
 public:
@@ -234,11 +250,17 @@ public:
      *  @return une reference a l'element correspondant dans la liste
      */
     reference at(size_t pos) {
-        Node* temp = head;
-        for(size_t i = 0; i < pos; ++i){
-            temp = temp->next;
-        }
-        return temp->data;
+       if (pos >= nbElements){
+          throw std::out_of_range("a completer");
+       }
+       else{
+         Node* temp = head;
+         for(size_t i = 0; i < pos; ++i){
+             temp = temp->next;
+         }
+         return temp->data; 
+       }
+
     }
 
     /**
@@ -270,22 +292,27 @@ public:
      *
      *  @exception std::out_of_range("LinkedList::erase") si pos non valide
      */
-    void erase( size_t pos ) {
-        if(pos == 0){
-            Node* temp = head;
-            head = head->next;
-            delete temp;
-        } else {
-            Node* temp = head;
-            for(unsigned i = 0; i < pos - 1; ++i){
-                temp = temp->next;
+      void erase( size_t pos ) {
+         if(pos >= nbElements){
+            throw std::out_of_range("acompleter");
+         }
+         else{
+            if(pos == 0){
+                Node* temp = head;
+                head = head->next;
+                delete temp;
+            } else {
+                Node* temp = head;
+                for(unsigned i = 0; i < pos - 1; ++i){
+                    temp = temp->next;
+                }
+                Node* toDelete = temp->next;
+                temp->next = temp->next->next;
+                delete toDelete;
             }
-            Node* toDelete = temp->next;
-            temp->next = temp->next->next;
-            delete toDelete;
-        }
-        --nbElements;
-    }
+            --nbElements;
+         }
+      }
 
 public:
     /**

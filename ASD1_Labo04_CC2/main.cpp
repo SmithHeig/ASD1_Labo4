@@ -77,7 +77,7 @@ int main() {
     cout << "\nCopie - " << copie;
     cout << "\nDestruction de la copie\n";
   }
-  /*
+  
   try {
     cout << "\n\nInsertion hors de range";
     liste.insert(42,liste.size()+1);
@@ -113,7 +113,7 @@ int main() {
   catch( ... ) {
     cout << "\nPas la bonne exception";
   }
-  
+  /*
   {
     cout << "\nCreation d'une liste vide";
     LinkedList<double> listeVide;
