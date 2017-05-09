@@ -81,9 +81,21 @@ public:
      *
      *  @param other la LinkedList à copier
      */
-    LinkedList( const LinkedList& other ) /* ... */ {
-        (*this) = other;
-    }
+//    LinkedList( const LinkedList& other ) /* ... */ {
+//        (*this) = other;
+//    }
+   LinkedList(const LinkedList& other): head(new Node{other.head->data, other.head->next}) ,nbElements(other.nbElements) {
+      
+      Node* prec = head;
+      Node* aCopier = other.head;
+
+      while (aCopier->next != nullptr) {
+          aCopier = aCopier->next;
+          Node* aAjouter = new Node(aCopier->data, nullptr);
+          prec->next = aAjouter;
+          prec = aAjouter;
+      }  
+   } 
 
 public:
     /**

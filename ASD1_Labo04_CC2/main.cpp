@@ -49,7 +49,7 @@ int main() {
       cout << '(' << i << ')';
   }
   
-  /*
+
   {
     cout << "\n\nCreation d'une copie constante de la liste\n";
     const LinkedList<int> copie = liste;
@@ -59,12 +59,13 @@ int main() {
     cout << "\nDestruction de la copie constante\n";
   }
   
-  
+   
   {
     cout << "\n\nCreation d'une copie de la liste\n";
     LinkedList<int> copie = liste;
     cout << "\nCopie - " << copie;
-    
+    cout << "\n\n\n";
+
     cout << "\nSuppression des " << N/2 << " premiers éléments\n";
     for(int i = 0; i < N/2; ++i)
       copie.pop_front();
