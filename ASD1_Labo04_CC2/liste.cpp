@@ -1,7 +1,7 @@
 //
 //  LinkedList.cpp
 //
-// Labo James Smith Guillaume Schranz et Joel Schär
+//  Labo James Smith Guillaume Schranz et Joel Schär
 //
 //  Copyright (c) 2016 Olivier Cuisenaire. All rights reserved.
 //
@@ -17,12 +17,12 @@ template < typename T > class LinkedList;
 
 /// Forward declaration fonction d'affichage
 template <typename T>
-ostream& operator << (ostream& os, const LinkedList<T>& liste);
+   ostream& operator << (ostream& os, const LinkedList<T>& liste);
 
 /// Classe de liste chainee
 template < typename T > class LinkedList {
-
-    friend ostream& operator << <T>(ostream& os, const LinkedList<T>& liste);
+   
+   friend ostream& operator << <T>(ostream& os, const LinkedList<T>& liste);
 
 public:
     using value_type = T;
@@ -33,15 +33,14 @@ public:
 
 private:
     /**
-    *  @brief Maillon de la chaine.
+    * @brief Maillon de la chaine.
     *
     * contient une valeur et le lien vers le maillon suivant.
     */
     struct Node {
         value_type data;
         Node* next;
-        Node(const_reference data, Node* next = nullptr)
-                : data(data), next(next) {
+        Node(const_reference data, Node* next = nullptr): data(data), next(next) {
             cout << "(C" << data << ") ";
         }
         Node(Node&) = delete;
@@ -84,14 +83,17 @@ public:
 //    LinkedList( const LinkedList& other ) /* ... */ {
 //        (*this) = other;
 //    }
-   LinkedList(const LinkedList& other): head(new Node{other.head->data, other.head->next}) ,nbElements(other.nbElements) {
+   LinkedList(const LinkedList& other): 
+      head(new Node{other.head->data, other.head->next}) ,
+                  nbElements(other.nbElements){
       
-      Node* prec = head;
-      Node* aCopier = other.head;
+      Node* prec     = head;
+      Node* aCopier  = other.head;
 
       while (aCopier->next != nullptr) {
           aCopier = aCopier->next;
           Node* aAjouter = new Node(aCopier->data, nullptr);
+          
           prec->next = aAjouter;
           prec = aAjouter;
       }  
@@ -112,19 +114,6 @@ public:
      *  effacé.
      */
     LinkedList& operator = ( const LinkedList& other ) {
-        /** à controler && l'opérateur doit être une no-op si other
-        *   est la LinkedList courante.*/
-//        if(head != other.head){
-//            for(unsigned i = 0; i < nbElements - 1; ++i){
-//                Node* temp = head;
-//                head = head->next;
-//                delete temp;
-//            }
-//            head = other.head;
-//            nbElements = other.nbElements;
-//        }
-//        return *this;
-//    }
         LinkedList tmp = other;
         swap(head, tmp.head);
         swap(nbElements, tmp.nbElements);
@@ -166,7 +155,8 @@ public:
        try{
          head = new Node(value,head);
          ++nbElements;
-       } catch(...){
+       }
+       catch(...){
           
        }
     }
@@ -179,13 +169,15 @@ public:
      *
      *  @exception std::runtime_error si la liste est vide
      */
-    reference front() {
-        /* Doit géré les execptions encore */
-        return head->data;
+    reference front() {        
+       if (!nbElements){
+          throw std::runtime_error("aCompleter");
+       }
+       else {
+          return head->data;
+       }
     }
-
     const_reference front() const {
-         //T front_data = head->data;
          return head->data;
     }
 
@@ -196,48 +188,52 @@ public:
      *  @exception std::runtime_error si la liste est vide
      */
     void pop_front( ) {
-        Node* temp = head;
-        head = head->next;
-        delete temp;
-        nbElements--;
+      if(head == nullptr){
+         throw runtime_error("acompleter"); 
+      }
+      else {
+         Node* temp = head;
+         head = head->next;
+         delete temp;
+         nbElements--;
+       }
     }
 
 public:
-    /**
-     *  @brief Insertion en position quelconque
-     *
-     *  @param value la valeur à insérer
-     *  @param pos   la position où insérer, 0 est la position en tete
-     *
-     *  @exception std::out_of_range("LinkedList::insert") si pos non valide
-     *
-     *  @exception std::bad_alloc si pas assez de mémoire, où toute autre exception lancée par la constructeur de copie de value_type
-     */
-       void insert( const_reference value, size_t pos ) {
-          try{
-            if(pos == 0){
-               return push_front(value);
-            } 
+   /**
+    *  @brief Insertion en position quelconque
+    *
+    *  @param value la valeur à insérer
+    *  @param pos   la position où insérer, 0 est la position en tete
+    *
+    *  @exception std::out_of_range("LinkedList::insert") si pos non valide
+    *
+    *  @exception std::bad_alloc si pas assez de mémoire, où toute autre exception lancée par la constructeur de copie de value_type
+   */
+   void insert( const_reference value, size_t pos ) {
+      try{
+         if(pos == 0){
+            return push_front(value);
+         } 
+         Node* current = head;
+         if (pos > nbElements) {
+            throw std::out_of_range("acompleter");
+         }
+         for(size_t i = 0; i < pos-1; ++i){
+               current = current->next;
+         }
+         Node* temp = current;
 
-            Node* current = head;
-            if (pos > nbElements) {
-                    throw std::out_of_range("acompleter");
-            }
-            for(size_t i = 0; i < pos-1; ++i){
-                current = current->next;
-            }
-            Node* temp = current;
-
-           temp->next = new Node(value, temp->next);
-           ++nbElements;
-        
-        }
-        catch(const std::out_of_range& e){
-            throw e;
-        }catch(const  std::exception& e){
-            throw e;
-        }
-    }
+         temp->next = new Node(value, temp->next);
+         ++nbElements;
+      }
+      catch(const std::out_of_range& e){
+         throw e;
+      }
+      catch(const  std::exception& e){
+         throw e;
+      }
+   }
 
 public:
     /**
@@ -250,18 +246,17 @@ public:
      *  @return une reference a l'element correspondant dans la liste
      */
     reference at(size_t pos) {
-       if (pos >= nbElements){
-          throw std::out_of_range("a completer");
-       }
-       else{
+      if (pos >= nbElements){
+         throw std::out_of_range("a completer");
+      }
+      else {
          Node* temp = head;
          for(size_t i = 0; i < pos; ++i){
              temp = temp->next;
-         }
-         return temp->data; 
-       }
-
-    }
+      }
+      return temp->data; 
+      }
+   }
 
     /**
      *  @brief Acces à l'element en position quelconque
@@ -296,12 +291,13 @@ public:
          if(pos >= nbElements){
             throw std::out_of_range("acompleter");
          }
-         else{
+         else {
             if(pos == 0){
                 Node* temp = head;
                 head = head->next;
                 delete temp;
-            } else {
+            } 
+            else {
                 Node* temp = head;
                 for(unsigned i = 0; i < pos - 1; ++i){
                     temp = temp->next;

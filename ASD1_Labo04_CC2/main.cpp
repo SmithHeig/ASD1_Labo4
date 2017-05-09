@@ -113,7 +113,7 @@ int main() {
   catch( ... ) {
     cout << "\nPas la bonne exception";
   }
-  /*
+  
   {
     cout << "\nCreation d'une liste vide";
     LinkedList<double> listeVide;
@@ -128,7 +128,7 @@ int main() {
     catch( ... ) {
       cout << "\nPas la bonne exception";
     }
-    
+  
     try {
       cout << "\nSuppression d'un élément";
       listeVide.pop_front();
@@ -141,7 +141,8 @@ int main() {
       cout << "\nPas la bonne exception";
     }
   }
-  */
+  
+  
   
   cout << "\nDestruction de la liste \n";
 }
