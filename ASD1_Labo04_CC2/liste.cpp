@@ -8,6 +8,8 @@
 
 #include <iostream>
 #include <stdexcept>
+#include <stdlib.h>     // srand, rand
+
 using namespace std;
 
 /// Forward declaration classe
@@ -79,7 +81,7 @@ public:
      *
      *  @param other la LinkedList à copier
      */
-    LinkedList( const LinkedList& other ); /* ... */ {
+    LinkedList( const LinkedList& other ) /* ... */ {
         (*this) = other;
     }
 
@@ -165,8 +167,8 @@ public:
     }
 
     const_reference front() const {
-         T front_data = head->data;
-         return front_data;
+         //T front_data = head->data;
+         return head->data;
     }
 
 public:
@@ -205,12 +207,7 @@ public:
          }
          Node* temp = current;
 
-         if(pos == nbElements){
-            temp->next = new Node(value, NULL);
-         }
-         else{
-            temp->next = new Node(value, temp->next);
-         }
+        temp->next = new Node(value, temp->next);
         ++nbElements;
     }
 
