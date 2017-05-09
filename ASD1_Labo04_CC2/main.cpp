@@ -2,6 +2,7 @@
 // PROGRAMME DE TEST CC2
 
 #include "liste.cpp"
+#include <random>
 
 int main() {
   
@@ -41,13 +42,14 @@ int main() {
   cout << "\nInsertion de l'élément 46 en dernière position\n";
   liste.insert(46, liste.size());
   cout << "\n" << liste;
-  
+
   cout << "\n\nRecherche d'elements allant de 0 à 99 \n";
   for(int i = 0; i < 100; ++i) {
     if(liste.find(i)!=-1)
       cout << '(' << i << ')';
   }
   
+  /*
   {
     cout << "\n\nCreation d'une copie constante de la liste\n";
     const LinkedList<int> copie = liste;
@@ -56,6 +58,7 @@ int main() {
       cout << copie.at(i) << " ";
     cout << "\nDestruction de la copie constante\n";
   }
+  
   
   {
     cout << "\n\nCreation d'une copie de la liste\n";
@@ -73,7 +76,7 @@ int main() {
     cout << "\nCopie - " << copie;
     cout << "\nDestruction de la copie\n";
   }
-  
+  /*
   try {
     cout << "\n\nInsertion hors de range";
     liste.insert(42,liste.size()+1);
@@ -137,6 +140,7 @@ int main() {
       cout << "\nPas la bonne exception";
     }
   }
+  */
   
   cout << "\nDestruction de la liste \n";
 }
