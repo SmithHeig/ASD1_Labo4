@@ -305,6 +305,22 @@ public:
     Node*& merge(Node*& start, Node* mid, Node* end){
 
         Node** cur = &start;
+        Node** curMid = &mid;
+        Node** curStart = &start;
+
+        while((*cur)->next != end){
+
+            if(*curStart != mid){
+                curStart = &(*curStart)->next;
+            }
+            if(*curMid != end){
+                curMid = &(*curMid)->next;
+            }
+            cur = &(*cur)->next;
+
+        }
+
+        return (*curMid)->next;
 
     }
 
@@ -313,6 +329,7 @@ public:
 
         Node** cur = &start;
         Node* half = start;
+        Node* full = start;
 
         cout << "n : " << n << endl;
 
@@ -322,6 +339,7 @@ public:
         }
         for(size_t i=0; i<n/2; ++i){
             half = half->next;
+            full = full->next->next;
         }
         cout<<endl;
 
@@ -329,12 +347,10 @@ public:
             return start->next;
 
 
-
-
-
         mergeSort(start, n/2);
         mergeSort(half, n-(n/2));
 
+        return merge(start, half, full);
 
     }
 
