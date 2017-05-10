@@ -309,8 +309,7 @@ public:
     }
 
     Node*& mergeSort(Node*& start, size_t n){
-        if(n<1)
-            return start->next;
+
 
         Node** cur = &start;
         Node* half = start;
@@ -321,15 +320,20 @@ public:
             cout << (*cur)->data << " ";
             cur = &(*cur)->next;
         }
-        for(size_t i=0; i<n-(n/2); ++i){
+        for(size_t i=0; i<n/2; ++i){
             half = half->next;
         }
-
         cout<<endl;
 
+        if(n<=1)
+            return start->next;
 
-        mergeSort(start, (size_t)ceil((double)n/2));
-        mergeSort(half, (size_t)round(n/2));
+
+
+
+
+        mergeSort(start, n/2);
+        mergeSort(half, n-(n/2));
 
 
     }
