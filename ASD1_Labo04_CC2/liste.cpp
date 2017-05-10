@@ -80,9 +80,6 @@ public:
      *
      *  @param other la LinkedList à copier
      */
-//    LinkedList( const LinkedList& other ) /* ... */ {
-//        (*this) = other;
-//    }
    LinkedList(const LinkedList& other): 
       head(new Node{other.head->data, other.head->next}) ,
                   nbElements(other.nbElements){
@@ -171,12 +168,13 @@ public:
      */
     reference front() {        
        if (!nbElements){
-          throw std::runtime_error("aCompleter");
+          throw std::runtime_error("empty_list");
        }
        else {
           return head->data;
        }
     }
+    
     const_reference front() const {
          return head->data;
     }
@@ -189,7 +187,7 @@ public:
      */
     void pop_front( ) {
       if(head == nullptr){
-         throw runtime_error("acompleter"); 
+         throw runtime_error("empty_list"); 
       }
       else {
          Node* temp = head;
@@ -211,28 +209,21 @@ public:
     *  @exception std::bad_alloc si pas assez de mémoire, où toute autre exception lancée par la constructeur de copie de value_type
    */
    void insert( const_reference value, size_t pos ) {
-      try{
-         if(pos == 0){
-            return push_front(value);
-         } 
-         Node* current = head;
-         if (pos > nbElements) {
-            throw std::out_of_range("acompleter");
-         }
-         for(size_t i = 0; i < pos-1; ++i){
-               current = current->next;
-         }
-         Node* temp = current;
+      
+      if(pos == 0){
+         return push_front(value);
+      } 
+      Node* current = head;
+      if (pos > nbElements) {
+         throw std::out_of_range("LinkedList::insert");
+      }
+      for(size_t i = 0; i < pos-1; ++i){
+            current = current->next;
+      }
+      Node* temp = current;
 
-         temp->next = new Node(value, temp->next);
-         ++nbElements;
-      }
-      catch(const std::out_of_range& e){
-         throw e;
-      }
-      catch(const  std::exception& e){
-         throw e;
-      }
+      temp->next = new Node(value, temp->next);
+      ++nbElements;
    }
 
 public:
@@ -247,7 +238,7 @@ public:
      */
     reference at(size_t pos) {
       if (pos >= nbElements){
-         throw std::out_of_range("a completer");
+         throw std::out_of_range("LinkedList::at");
       }
       else {
          Node* temp = head;
@@ -269,7 +260,7 @@ public:
      */
     const_reference at(size_t pos) const {
         if(pos >= size()){
-            throw(out_of_range("position invalide!"));
+            throw(out_of_range("LinkedList::at"));
         }
         Node* temp = head;
         /* element avant l'élément à insérer */
@@ -289,7 +280,7 @@ public:
      */
       void erase( size_t pos ) {
          if(pos >= nbElements){
-            throw std::out_of_range("acompleter");
+            throw std::out_of_range("LinkedList::erase");
          }
          else {
             if(pos == 0){
