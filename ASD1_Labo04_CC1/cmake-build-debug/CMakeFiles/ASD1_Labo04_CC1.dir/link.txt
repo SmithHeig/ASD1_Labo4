@@ -1,3 +1,1 @@
-"C:\Program Files (x86)\JetBrains\CLion 2016.3.4\bin\cmake\bin\cmake.exe" -E remove -f CMakeFiles\ASD1_Labo04_CC1.dir/objects.a
-C:\MinGW\bin\ar.exe cr CMakeFiles\ASD1_Labo04_CC1.dir/objects.a @CMakeFiles\ASD1_Labo04_CC1.dir\objects1.rsp
-C:\MinGW\bin\g++.exe  -g   -Wl,--whole-archive CMakeFiles\ASD1_Labo04_CC1.dir/objects.a -Wl,--no-whole-archive  -o ASD1_Labo04_CC1.exe -Wl,--out-implib,libASD1_Labo04_CC1.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\ASD1_Labo04_CC1.dir\linklibs.rsp
+/usr/bin/c++   -g   CMakeFiles/ASD1_Labo04_CC1.dir/liste.cpp.o CMakeFiles/ASD1_Labo04_CC1.dir/main.cpp.o  -o ASD1_Labo04_CC1 

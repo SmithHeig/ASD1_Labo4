@@ -8,8 +8,6 @@
 
 #include <iostream>
 #include <stdexcept>
-#include <stdlib.h>     // srand, rand
-
 using namespace std;
 
 /// Forward declaration classe
@@ -167,8 +165,8 @@ public:
     }
 
     const_reference front() const {
-         //T front_data = head->data;
-         return head->data;
+         T front_data = head->data;
+         return front_data;
     }
 
 public:
@@ -207,7 +205,12 @@ public:
          }
          Node* temp = current;
 
-        temp->next = new Node(value, temp->next);
+         if(pos == nbElements){
+            temp->next = new Node(value, NULL);
+         }
+         else{
+            temp->next = new Node(value, temp->next);
+         }
         ++nbElements;
     }
 
@@ -285,7 +288,7 @@ public:
      *  @return la position dans la liste. -1 si la valeur
         n'est pas trouvée
      */
-    size_t find( const_reference value ) const noexcept {
+    int find( const_reference value ) const noexcept {
         Node* temp = head;
         for(unsigned i = 0; i < nbElements; ++i){
             if(temp->data == value){
@@ -295,6 +298,8 @@ public:
         }
         return -1;
     }
+
+
 
     /**
      *  @brief Tri des elements de la liste par tri fusion

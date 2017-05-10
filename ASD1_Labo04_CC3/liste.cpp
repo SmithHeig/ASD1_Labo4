@@ -9,6 +9,7 @@
 #include <iostream>
 #include <stdexcept>
 #include <stdlib.h>     // srand, rand
+#include <cmath>
 
 using namespace std;
 
@@ -301,7 +302,35 @@ public:
      *
      *  source used : http://www.cplusplus.com/forum/beginner/27748/
      */
-    void fusionner(Node* left, Node* right){
+    Node*& merge(Node*& start, Node* mid, Node* end){
+
+        Node** cur = &start;
+
+    }
+
+    Node*& mergeSort(Node*& start, size_t n){
+        if(n<1)
+            return start->next;
+
+        Node** cur = &start;
+        Node* half = start;
+
+        cout << "n : " << n << endl;
+
+        for(size_t i=0; i<n; ++i){
+            cout << (*cur)->data << " ";
+            cur = &(*cur)->next;
+        }
+        for(size_t i=0; i<n-(n/2); ++i){
+            half = half->next;
+        }
+
+        cout<<endl;
+
+
+        mergeSort(start, (size_t)ceil((double)n/2));
+        mergeSort(half, (size_t)round(n/2));
+
 
     }
 
@@ -317,6 +346,8 @@ public:
             rightHead = rightHead->next;
         }
 
+
+
         Node* half = head;
         Node* full = head;
         while(full && full->next){
@@ -324,7 +355,9 @@ public:
             full = full->next->next;
         }
 
+        mergeSort(head,nbElements);
 
+/*
         LinkedList<T> leftListe;
         leftListe.head = this->head;
 
@@ -336,13 +369,13 @@ public:
         }
 
         cout << "half" << half->data << endl;
+*/
+
+       //cout << "\n\n" << *this << "        " << leftHead->data << "|" <<leftListe << "         "<< rightHead->data << "|" << rightListe <<"\n\n";
 
 
-       cout << "\n\n" << *this << "        " << leftHead->data << "|" <<leftListe << "         "<< rightHead->data << "|" << rightListe <<"\n\n";
 
-
-
-        fusionner(leftHead, rightHead);
+        //fusionner(leftHead, rightHead);
 
     } // end sort
 

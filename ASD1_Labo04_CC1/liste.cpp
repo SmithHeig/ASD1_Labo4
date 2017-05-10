@@ -1,15 +1,10 @@
-//
 //  LinkedList.cpp
-//
-// Labo James Smith Guillaume Schranz et Joel Schär
 //
 //  Copyright (c) 2016 Olivier Cuisenaire. All rights reserved.
 //
 
 #include <iostream>
 #include <stdexcept>
-#include <stdlib.h>     // srand, rand
-
 using namespace std;
 
 /// Forward declaration classe
@@ -71,7 +66,7 @@ public:
      */
     LinkedList() /* ... */
     {
-        head = nullptr;
+        head = nullptr;//NULL ?
         nbElements = 0;
     }
 
@@ -81,9 +76,9 @@ public:
      *
      *  @param other la LinkedList à copier
      */
-    LinkedList( const LinkedList& other ) /* ... */ {
-        (*this) = other;
-    }
+    //LinkedList( LinkedList& other ) /* ... */ {
+      //  (*this) = other;
+    //}
 
 public:
     /**
@@ -100,18 +95,10 @@ public:
      *  effacé.
      */
     LinkedList& operator = ( const LinkedList& other ) {
-        /** à controler && l'opérateur doit être une no-op si other
-        *   est la LinkedList courante.*/
-        if(head != other.head){
-            for(unsigned i = 0; i < nbElements - 1; ++i){
-                Node* temp = head;
-                head = head->next;
-                delete temp;
-            }
-            head = other.head;
-            nbElements = other.nbElements;
-        }
-        return *this;
+       // head = other.head;
+        //nbElements = other.nbElements;
+        //return *this;
+        /** Doit on supprimé les éléments du tableau qui se fait ecrasé ?*/
     }
 
 public:
@@ -119,11 +106,14 @@ public:
      *  @brief destructeur
      */
     ~LinkedList() {
-        for(unsigned i = 0; i < nbElements;++i){
+        for(unsigned i = 0; i < nbElements;++i){// - 1; ++i){
             Node* temp = head;
             head = head->next;
             delete temp;
         }
+        //delete head; // supprimer le dernier élément
+        //Est ce qu'on le ferait pas deux fois ? 
+        //nbElements = 0; //Useless ?
     }
 
 public:
@@ -163,12 +153,13 @@ public:
      */
     reference front() {
         /* Doit géré les execptions encore */
-        return head->data;
+        return head->data;//MODIF GIGI (*head).data;
     }
 
     const_reference front() const {
-         //T front_data = head->data;
-         return head->data;
+        //const unsigned front_data = (*head).data;
+         T front_data = head->data;
+         return front_data;
     }
 
 public:
@@ -182,6 +173,7 @@ public:
         head = head->next;
         delete temp;
         nbElements--;
+        //?????????????????????
     }
 
 public:
@@ -207,10 +199,35 @@ public:
          }
          Node* temp = current;
 
-        temp->next = new Node(value, temp->next);
+         if(pos == nbElements){
+            temp->next = new Node(value, NULL);
+         }
+         else{
+            temp->next = new Node(value, temp->next);
+         }
         ++nbElements;
-    }
+    }   
+   /* void insert( const_reference value, size_t pos ) {
+        if(pos == 0){
+            this->push_front(value);
+        } else {
+            if(pos == this->size()){
+                --pos;
+            }
+            Node* temp = head;
+            for(unsigned i = 0; i < pos -1; ++i){
+                temp = temp->next;
+            }
+            Node* n = new Node(value, temp->next);
+            temp->next = n;
+        }
+        ++nbElements;
+    }*/        
+   
+   
 
+
+   
 public:
     /**
      *  @brief Acces à l'element en position quelconque
@@ -226,7 +243,7 @@ public:
         for(size_t i = 0; i < pos; ++i){
             temp = temp->next;
         }
-        return temp->data;
+        return temp->data;//modif
     }
 
     /**
@@ -239,15 +256,12 @@ public:
      *  @return une const_reference a l'element correspondant dans la liste
      */
     const_reference at(size_t pos) const {
-        if(pos >= size()){
-            throw(out_of_range("position invalide!"));
-        }
         Node* temp = head;
         /* element avant l'élément à insérer */
         for(unsigned i = 0; i < pos; ++i){
             temp = temp->next;
         }
-        return (*temp).data;
+        return temp->data;//modif
     }
 
 public:
