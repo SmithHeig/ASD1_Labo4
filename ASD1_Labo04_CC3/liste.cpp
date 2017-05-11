@@ -325,19 +325,102 @@ public:
     /**
      *  @brief Tri des elements de la liste par tri fusion
      */
-    void sort() {
-        Node* temp = head;
-        for(unsigned i = 0; i < nbElements; ++i){
-            for(unsigned j = 0; j < nbElements - i; ++j){
-                if(temp->data > temp->next->data){
-                    //swap
-                    Node* temp2 = temp;
-                    temp->data = temp->next->data;
-                    temp2->next->data = temp2->data;
-                }
+    Node*& merge(Node*& start, Node* mid, Node* end){
+
+        Node** cur = &start;
+        Node** curMid = &mid;
+        Node** curStart = &start;
+
+        while((*cur)->next != end){
+
+            if(*curStart != mid){
+                curStart = &(*curStart)->next;
             }
+            if(*curMid != end){
+                curMid = &(*curMid)->next;
+            }
+            cur = &(*cur)->next;
+
         }
+
+        return (*curMid)->next;
+
     }
+
+    Node*& mergeSort(Node*& start, size_t n){
+
+
+        Node** cur = &start;
+        Node* half = start;
+        Node* full = start;
+
+        cout << "n : " << n << endl;
+
+        for(size_t i=0; i<n; ++i){
+            cout << (*cur)->data << " ";
+            cur = &(*cur)->next;
+        }
+        for(size_t i=0; i<n/2; ++i){
+            half = half->next;
+            full = full->next->next;
+        }
+        cout<<endl;
+
+        if(n<=1)
+            return start->next;
+
+
+        mergeSort(start, n/2);
+        mergeSort(half, n-(n/2));
+
+        return merge(start, half, full);
+
+    }
+
+    void sort() {
+        if(nbElements <= 1)
+            return;
+
+        size_t mid = nbElements/2;
+
+        Node* leftHead = head;
+        Node* rightHead = head;
+        for(size_t i = 0; i < mid; ++i){
+            rightHead = rightHead->next;
+        }
+
+
+
+        Node* half = head;
+        Node* full = head;
+        while(full && full->next){
+            half = half->next;
+            full = full->next->next;
+        }
+
+        mergeSort(head,nbElements);
+
+/*
+        LinkedList<T> leftListe;
+        leftListe.head = this->head;
+
+
+        LinkedList<T> rightListe;
+        rightListe.head = half;
+        for(size_t i = 0; i < nbElements - mid; ++i){
+            rightListe.insert(this->at(i + mid), i);
+        }
+
+        cout << "half" << half->data << endl;
+*/
+
+        //cout << "\n\n" << *this << "        " << leftHead->data << "|" <<leftListe << "         "<< rightHead->data << "|" << rightListe <<"\n\n";
+
+
+
+        //fusionner(leftHead, rightHead);
+
+    } // end sort
 };
 
 template <typename T>
