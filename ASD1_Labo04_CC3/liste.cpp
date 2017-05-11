@@ -328,22 +328,35 @@ public:
     Node*& merge(Node*& start, Node* mid, Node* end){
 
         Node** cur = &start;
-        Node** curMid = &mid;
-        Node** curStart = &start;
+        Node* curMid = mid;
+        Node* curStart = start;
 
-        while((*cur)->next != end){
+        while((*cur) != end){
 
-            if(*curStart != mid){
-                curStart = &(*curStart)->next;
+            if(curStart != mid && curMid != end) {
+
+                if(curStart->data < curMid->data){
+                    *cur = curStart;
+                    curStart = curStart->next;
+                }
+                else{
+                    *cur = curMid;
+                    curMid = curMid->next;
+                }
+            }else if(curStart != mid){
+                *cur = curStart;
+                curStart = curStart->next;
+            }else if(curMid != end){
+                *cur = curMid;
+                curMid = curMid->next;
             }
-            if(*curMid != end){
-                curMid = &(*curMid)->next;
-            }
+
+
             cur = &(*cur)->next;
 
         }
 
-        return (*curMid)->next;
+        return (*cur);
 
     }
 
