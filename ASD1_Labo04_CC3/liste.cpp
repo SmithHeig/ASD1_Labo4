@@ -327,11 +327,14 @@ public:
      */
     Node*& merge(Node*& start, Node* mid, Node* end){
 
+        cout << "before merge :" << (*this) << "  " << start->data << mid -> data << endl;
+
         Node** cur = &start;
         Node* curMid = mid;
         Node* curStart = start;
+        Node* temp;
 
-        while((*cur) != end){
+        while(*cur != end ){
 
             if(curStart != mid && curMid != end) {
 
@@ -340,22 +343,33 @@ public:
                     curStart = curStart->next;
                 }
                 else{
+                    temp = curMid->next;
+                    curMid->next = *cur;
                     *cur = curMid;
-                    curMid = curMid->next;
+                    curMid = temp;
                 }
-            }else if(curStart != mid){
+            }
+            else if(curStart != mid){
                 *cur = curStart;
                 curStart = curStart->next;
-            }else if(curMid != end){
-                *cur = curMid;
-                curMid = curMid->next;
+            }
+            else if(curMid != end){
+                    temp = curMid->next;
+                    curMid->next = *cur;
+                    *cur = curMid;
+                    curMid = temp;
+            }
+            else{
+                cur = &(*cur)->next;
+                (*cur)->next = end;
+                cout << "after merge  :" << (*this) << endl;
+                return ((*cur)->next);
             }
 
-
             cur = &(*cur)->next;
-
         }
 
+        cout << "after merge  :" << (*this) << endl;
         return (*cur);
 
     }
@@ -385,6 +399,7 @@ public:
 
         mergeSort(start, n/2);
         mergeSort(half, n-(n/2));
+
 
         return merge(start, half, full);
 
