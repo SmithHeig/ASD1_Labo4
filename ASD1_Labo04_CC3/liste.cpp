@@ -334,81 +334,81 @@ public:
         Node* curStart = start;
         Node* temp;
 
-        while(*cur != end ){
+            while(curStart != mid && curMid != end) {
 
-            if(curStart != mid && curMid != end) {
-
-                if(curStart->data < curMid->data){
+                if (curStart->data < curMid->data) {
                     *cur = curStart;
                     curStart = curStart->next;
-                }
-                else{
+
+                } else {
                     temp = curMid->next;
                     curMid->next = *cur;
                     *cur = curMid;
                     curMid = temp;
                 }
+                    cur = &((*cur)->next);
             }
-            else if(curStart != mid){
+
+            while(curStart != mid){
                 *cur = curStart;
                 curStart = curStart->next;
-            }
-            else if(curMid != end){
-                    temp = curMid->next;
-                    curMid->next = *cur;
-                    *cur = curMid;
-                    curMid = temp;
-            }
-            else{
                 cur = &(*cur)->next;
-                (*cur)->next = end;
-                cout << "after merge  :" << (*this) << endl;
-                return ((*cur)->next);
+            }
+            while(curMid != end){
+                *cur = curMid;
+                curMid = curMid->next;
+                cur = &(*cur)->next;
             }
 
-            cur = &(*cur)->next;
-        }
+           *cur = end;
 
         cout << "after merge  :" << (*this) << endl;
-        return (*cur);
+        return *cur;
 
     }
 
     Node*& mergeSort(Node*& start, size_t n){
-
-
         Node** cur = &start;
-        Node* half = start;
-        Node* full = start;
-
-        cout << "n : " << n << endl;
+        cout << "\n n1 : " << n << endl;
 
         for(size_t i=0; i<n; ++i){
             cout << (*cur)->data << " ";
             cur = &(*cur)->next;
         }
-        for(size_t i=0; i<n/2; ++i){
-            half = half->next;
-            full = full->next->next;
-        }
-        cout<<endl;
 
         if(n<=1)
             return start->next;
 
 
-        mergeSort(start, n/2);
-        mergeSort(half, n-(n/2));
+        Node* half = mergeSort(start, n/2);
+        Node* full = mergeSort(half, (n+1)/2);
 
 
-        return merge(start, half, full);
+        cout << "\n n2 : " << n << endl;
+
+        for(size_t i=0; i<n+(n/2); ++i){
+            cout << (*cur)->data << " ";
+            cur = &(*cur)->next;
+        }
+     /*   for(size_t i=0; i<n/2; ++i){
+            half = half->next;
+            full = full->next->next;
+        }
+        cout<<endl;*/
+
+        //half = mergeSort(start, n/2);
+        //full = mergeSort(half, (n+1)/2);
+
+
+
+        return merge(start, half, full);;
 
     }
 
     void sort() {
         if(nbElements <= 1)
             return;
-
+/*
         size_t mid = nbElements/2;
 
         Node* leftHead = head;
@@ -425,7 +425,7 @@ public:
             half = half->next;
             full = full->next->next;
         }
-
+*/
         mergeSort(head,nbElements);
 
 /*
