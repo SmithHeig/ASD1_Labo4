@@ -83,17 +83,22 @@ public:
    LinkedList(const LinkedList& other): 
       head(new Node{other.head->data, other.head->next}) ,
                   nbElements(other.nbElements){
-      
-      Node* prec     = head;
-      Node* aCopier  = other.head;
+         if(other.nbElements){
+            Node* prec     = head;
+            Node* aCopier  = other.head;
 
-      while (aCopier->next != nullptr) {
-          aCopier = aCopier->next;
-          Node* aAjouter = new Node(aCopier->data, nullptr);
-          
-          prec->next = aAjouter;
-          prec = aAjouter;
-      }  
+            while (aCopier->next != nullptr) {
+                aCopier = aCopier->next;
+                Node* aAjouter = new Node(aCopier->data, nullptr);
+
+                prec->next = aAjouter;
+                prec = aAjouter;
+            }  
+         }else{
+            nbElements = 0;
+            head = nullptr;
+         }
+         
    } 
 
 public:
@@ -111,6 +116,7 @@ public:
      *  effacé.
      */
     LinkedList& operator = ( const LinkedList& other ) {
+        if(this->head == other.head)   return *this;
         LinkedList tmp = other;
         swap(head, tmp.head);
         swap(nbElements, tmp.nbElements);
@@ -175,8 +181,13 @@ public:
        }
     }
     
-    const_reference front() const {
-         return head->data;
+    const_reference front() const {        
+       if (!nbElements){
+          throw std::runtime_error("empty_list");
+       }
+       else {
+          return head->data;
+       }
     }
 
 public:
