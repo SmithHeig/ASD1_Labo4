@@ -83,7 +83,6 @@ int main(int argc, const char * argv[]) {
         if(liste.find(i)!=-1)
             cout << '(' << i << ')';
     }
-/*
     {
         cout << "\n\nCreation d'une copie constante de la liste\n";
         const LinkedList<T> copie = liste;
@@ -210,7 +209,6 @@ int main(int argc, const char * argv[]) {
         }
         cout << "\nDestruction de la liste temporaire\n";
     }
-    */
 
     cout << "\n\nTri fusion";
     cout << "\nAvant: " << liste;

@@ -155,12 +155,14 @@ public:
      *  @exception std::bad_alloc si pas assez de mémoire, où toute autre exception lancée par la constructeur de copie de value_type
      */
     void push_front( const_reference value) {
+        Node* temp = head;
        try{
          head = new Node(value,head);
          ++nbElements;
        }
        catch(...){
-          
+           head = temp;
+          throw;
        }
     }
 
