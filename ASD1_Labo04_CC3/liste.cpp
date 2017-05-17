@@ -90,7 +90,7 @@ public:
                 while (aCopier->next != nullptr) {
                     aCopier = aCopier->next;
                     Node* aAjouter = new Node(aCopier->data, nullptr);
-
+                    nbElements++;
                     prec->next = aAjouter;
                     prec = aAjouter;
                 }
