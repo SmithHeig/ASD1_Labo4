@@ -160,7 +160,7 @@ public:
          ++nbElements;
        }
        catch(...){
-          
+          throw;
        }
     }
 
