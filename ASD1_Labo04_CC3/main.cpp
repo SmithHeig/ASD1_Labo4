@@ -204,7 +204,7 @@ int main(int argc, const char * argv[]) {
             cout << "\nException non levée";
         } catch( ... ) {
             cout << "\nException capturée";
-            cout << "\n" << copie << "\n"
+            cout << "\n" << copie << "\n";
             liste.at(liste.size()/2) = 123;
         }
         cout << "\nDestruction de la liste temporaire\n";
