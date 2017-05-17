@@ -341,10 +341,11 @@ public:
                     curStart = curStart->next;
 
                 } else {
-                    temp = curMid->next;
-                    curMid->next = *cur;
+                    //temp = curMid->next;
+                    //curMid->next = *cur;
                     *cur = curMid;
-                    curMid = temp;
+                    curMid = curMid->next;
+                    //curMid = temp;
                 }
                     cur = &((*cur)->next);
             }
@@ -380,8 +381,8 @@ public:
             return start->next;
 
 
-        Node* half = mergeSort(start, n/2);
-        Node* full = mergeSort(half, (n+1)/2);
+        Node* &half = mergeSort(start, n/2);
+        Node* &full = mergeSort(half, (n+1)/2);
 
 
         cout << "\n n2 : " << n << endl;
