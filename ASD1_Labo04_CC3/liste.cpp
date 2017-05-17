@@ -341,44 +341,47 @@ public:
     }
 
     /**
-     *  @brief Tri des elements de la liste par tri fusion
-     */
+      *  @brief Tri des elements de la liste par tri fusion
+      */
     Node*& merge(Node*& start, Node* mid, Node* end){
 
         Node** cur = &start;
         Node* curMid = mid;
         Node* curStart = start;
-        Node* temp;
 
+        // récupère les éléments depuis les deux listes selon l'a valeur qui est plus petite
         while(curStart != mid && curMid != end) {
-
-                if (curStart->data < curMid->data) {
-                    *cur = curStart;
-                    curStart = curStart->next;
-
-                } else {
-                    *cur = curMid;
-                    curMid = curMid->next;
-                }
-                    cur = &((*cur)->next);
-            }
-
-            while(curStart != mid){
+            if (curStart->data < curMid->data) {
                 *cur = curStart;
                 curStart = curStart->next;
-                cur = &(*cur)->next;
-            }
-            while(curMid != end){
+
+            } else {
                 *cur = curMid;
                 curMid = curMid->next;
-                cur = &(*cur)->next;
             }
 
-           *cur = end;
+            cur = &((*cur)->next);
+        }
 
+        // récupère les éléments depuis l'une ou l'autre liste si une seule comporte encore des éléments
+        while(curStart != mid){
+            *cur = curStart;
+            curStart = curStart->next;
+            cur = &(*cur)->next;
+        }
+        while(curMid != end){
+            *cur = curMid;
+            curMid = curMid->next;
+            cur = &(*cur)->next;
+        }
+
+        // remise en place de l'élément end à la fin de la liste fusionnée
+        *cur = end;
+
+        //retour de l'élément courant (end) à la fin de la fusion
         return *cur;
 
-    }
+    } // end merge
 
     Node*& mergeSort(Node*& start, size_t n){
         Node** cur = &start;
@@ -386,55 +389,20 @@ public:
         if(n<=1)
             return start->next;
 
+        // séparation de la liste en morceau par appels récursifs
         Node* &half = mergeSort(start, n/2);
         Node* &full = mergeSort(half, (n+1)/2);
 
-        return merge(start, half, full);;
+        // fusion des morceaux de liste
+        return merge(start, half, full);
 
-    }
+    } // end mergeSort
 
     void sort() {
         if(nbElements <= 1)
             return;
-/*
-        size_t mid = nbElements/2;
 
-        Node* leftHead = head;
-        Node* rightHead = head;
-        for(size_t i = 0; i < mid; ++i){
-            rightHead = rightHead->next;
-        }
-
-
-
-        Node* half = head;
-        Node* full = head;
-        while(full && full->next){
-            half = half->next;
-            full = full->next->next;
-        }
-*/
         mergeSort(head,nbElements);
-
-/*
-        LinkedList<T> leftListe;
-        leftListe.head = this->head;
-
-
-        LinkedList<T> rightListe;
-        rightListe.head = half;
-        for(size_t i = 0; i < nbElements - mid; ++i){
-            rightListe.insert(this->at(i + mid), i);
-        }
-
-        cout << "half" << half->data << endl;
-*/
-
-        //cout << "\n\n" << *this << "        " << leftHead->data << "|" <<leftListe << "         "<< rightHead->data << "|" << rightListe <<"\n\n";
-
-
-
-        //fusionner(leftHead, rightHead);
 
     } // end sort
 };
