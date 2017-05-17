@@ -328,59 +328,57 @@ public:
     Node*& merge(Node*& start, Node* mid, Node* end){
 
         Node** cur = &start;
-        Node** curMid = &mid;
-        Node** curStart = &start;
+        Node* curMid = mid;
+        Node* curStart = start;
+        Node* temp;
 
-        while((*cur)->next != end){
+        while(curStart != mid && curMid != end) {
 
-            if(*curStart != mid){
-                curStart = &(*curStart)->next;
+                if (curStart->data < curMid->data) {
+                    *cur = curStart;
+                    curStart = curStart->next;
+
+                } else {
+                    *cur = curMid;
+                    curMid = curMid->next;
+                }
+                    cur = &((*cur)->next);
             }
-            if(*curMid != end){
-                curMid = &(*curMid)->next;
+
+            while(curStart != mid){
+                *cur = curStart;
+                curStart = curStart->next;
+                cur = &(*cur)->next;
             }
-            cur = &(*cur)->next;
+            while(curMid != end){
+                *cur = curMid;
+                curMid = curMid->next;
+                cur = &(*cur)->next;
+            }
 
-        }
+           *cur = end;
 
-        return (*curMid)->next;
+        return *cur;
 
     }
 
     Node*& mergeSort(Node*& start, size_t n){
-
-
         Node** cur = &start;
-        Node* half = start;
-        Node* full = start;
-
-        cout << "n : " << n << endl;
-
-        for(size_t i=0; i<n; ++i){
-            cout << (*cur)->data << " ";
-            cur = &(*cur)->next;
-        }
-        for(size_t i=0; i<n/2; ++i){
-            half = half->next;
-            full = full->next->next;
-        }
-        cout<<endl;
 
         if(n<=1)
             return start->next;
 
+        Node* &half = mergeSort(start, n/2);
+        Node* &full = mergeSort(half, (n+1)/2);
 
-        mergeSort(start, n/2);
-        mergeSort(half, n-(n/2));
-
-        return merge(start, half, full);
+        return merge(start, half, full);;
 
     }
 
     void sort() {
         if(nbElements <= 1)
             return;
-
+/*
         size_t mid = nbElements/2;
 
         Node* leftHead = head;
@@ -397,7 +395,7 @@ public:
             half = half->next;
             full = full->next->next;
         }
-
+*/
         mergeSort(head,nbElements);
 
 /*
